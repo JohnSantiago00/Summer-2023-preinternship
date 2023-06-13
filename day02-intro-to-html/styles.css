@@ -17,13 +17,18 @@
   border: 6px solid black;
   display: grid;
   margin: 0 3em 2em;
-  grid-template-columns: 25% 50% 25%;
+  grid-template-columns: repeat(3, 1fr);
   /* grid-template-rows: 100px 150px 200px; */
-
-  /* justify-items: stretch;
-  align-items: stretch; */
-
-  place-items: center;
+  /* height: 400px; */
+  /* 
+    justify for main axis positioning
+    align for cross axis positioning
+    place for assigning both at once (align first then justify)
+   */
+  /* justify-items: center; 
+  align-items: center; */
+  /* place-items: start center; */
+  place-content: center space-between; /* align-items: center; justify-content: space-between */
   gap: 30px;
 }
 .grid-item {
