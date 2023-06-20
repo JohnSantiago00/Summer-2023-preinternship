@@ -66,3 +66,5 @@ const jobs = [
     postDate: "6 days ago",
   },
 ];
+
+console.table(jobs);
