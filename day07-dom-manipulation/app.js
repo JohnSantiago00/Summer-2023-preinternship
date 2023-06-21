@@ -66,3 +66,7 @@ const jobs = [
     postDate: "6 days ago",
   },
 ];
+
+const firstJob = document.getElementsByClassName("j-desc")[0];
+// we could also do document.querySelector(".j-desc") to get the same element as by default it will retrieve the first match to the CSS selector
+console.log(firstJob);
