@@ -1,5 +1,17 @@
 function cyclicSort(nums) {
-  
+  let i = 0;
+
+  for (let currentIndex = 0; currentIndex < nums.length; currentIndex++) {
+    const value = nums[currentIndex];
+    const correctIndex = value - 1;
+
+    if (currentIndex !== correctIndex) {
+      const valueAtCorrectIndex = nums[correctIndex]; //store the valueAtCorrectIndex
+      nums[correctIndex] = valueAtCorrectIndex; //place the valueAtCorrectIndex in the current index
+      nums[currentIndex] = value; //place value at correct index
+    }
+  }
+  return nums;
 }
 
 /*----------------------------------------------------------------

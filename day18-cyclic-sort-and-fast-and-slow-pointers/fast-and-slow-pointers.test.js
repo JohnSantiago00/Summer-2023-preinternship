@@ -15,4 +15,3 @@ describe("hasCycle", () => {
     head.next.next = new Node(3);
     expect(hasCycle(head)).toEqual(false);
   })
-})
