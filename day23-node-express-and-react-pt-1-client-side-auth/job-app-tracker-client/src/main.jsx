@@ -1,21 +1,25 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import "./index.css";
-import Root from "./routes/root";
+import AuthProvider from "./contexts/AuthContext";
 import ErrorPage from "./ErrorPage";
-import JobList, { loader as jobLoader } from "./routes/jobs/JobList";
+import "./index.css";
+import Login, { action as loginAction } from "./routes/Auth/Login";
+import Signup, { action as signupAction } from "./routes/Auth/Signup";
+import AddJob, { action as addJobAction } from "./routes/jobs/AddJob";
+import EditJob, {
+  action as editJobAction,
+  loader as editJobLoader,
+} from "./routes/jobs/editJob";
 import Job, {
   loader as jobDetailLoader,
   action as notesAction,
 } from "./routes/jobs/job";
-import AddJob, { action as addJobAction } from "./routes/jobs/AddJob";
-import EditJob, {
-  loader as editJobLoader,
-  action as editJobAction,
-} from "./routes/jobs/editJob";
+import JobList, { loader as jobLoader } from "./routes/jobs/JobList";
 import { action as destroyNoteAction } from "./routes/notes/destroyNote";
 import { action as updateNoteAction } from "./routes/notes/updateNote";
+import ProtectedRoute from "./routes/ProtectedRoute";
+import Root from "./routes/root";
 
 const router = createBrowserRouter([
   {
@@ -25,8 +29,22 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <JobList />,
+        element: (
+          <ProtectedRoute>
+            <JobList />
+          </ProtectedRoute>
+        ),
         loader: jobLoader,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+        action: loginAction,
+      },
+      {
+        path: "/signup",
+        element: <Signup />,
+        action: signupAction,
       },
       {
         path: "jobs/new",
@@ -66,6 +84,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>
 );

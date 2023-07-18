@@ -30,12 +30,11 @@ app.use(
   })
 );
 app.use(forbiddenErrorHandler);
-app.use(notFoundErrorHandler); 
+app.use(notFoundErrorHandler);
 
 // routes
-app.use("/auth", authRouter);
-app.use("/jobs", jobsRouter);
-
+app.use("/api/auth", authRouter);
+app.use("/api/jobs", jobsRouter);
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
